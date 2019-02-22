@@ -1,6 +1,9 @@
 #include "eventmanager.h"
 #include <SFML/Graphics.hpp>
 #include "eventhandler.h"
+#include <iostream>
+#include <algorithm>
+
 
 EventManager::EventManager()
 {
@@ -9,18 +12,19 @@ EventManager::EventManager()
 
 
 
-void EventManager::Execute(EventHandler Handler, sf::RenderWindow window)
+void EventManager::Execute()
 {
 
     sf::Event event;
-    while(window.pollEvent(event))
+    while(eventHandler->drawManager->window->pollEvent(event))
     {
-        //std::string action = Binder.find(event.type);
 
+        auto action = (ActionBinder.find(event.type));
+        if (action != ActionBinder.end())
+        {
+            (eventHandler->*action->second)();
+        }
 
     }
-
-
-
 
 }
