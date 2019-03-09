@@ -16,6 +16,7 @@ public:
     std::map<std::string, GameObject> gameObjects;
 
 
+    //std::vector<GameObject*> objects;
 
 };
 
